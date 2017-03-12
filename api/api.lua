@@ -588,6 +588,25 @@ function pfUI.api.CreateBackdrop(f, inset, legacy, transp)
   b:SetBackdropBorderColor(er, eg, eb , ea)
 end
 
+function pfUI.api.SkinRotateButton(button)
+  pfUI.api.CreateBackdrop(button)
+
+  local _, class = UnitClass("player")
+  local color = RAID_CLASS_COLORS[class]
+  local cr, cg, cb = color.r , color.g, color.b
+
+  button:SetWidth(button:GetWidth() - 18)
+  button:SetHeight(button:GetHeight() - 18)
+
+  button:GetNormalTexture():SetTexCoord(0.3, 0.29, 0.3, 0.65, 0.69, 0.29, 0.69, 0.65);
+  button:GetPushedTexture():SetTexCoord(0.3, 0.29, 0.3, 0.65, 0.69, 0.29, 0.69, 0.65);
+
+  button:GetHighlightTexture():SetTexture(cr, cg, cb, .25);
+
+  button:GetPushedTexture():SetAllPoints(button:GetNormalTexture());
+  button:GetHighlightTexture():SetAllPoints(button:GetNormalTexture());
+end
+
 -- [ Skin Button ]
 -- Applies pfUI skin to buttons:
 -- 'button'     [frame/string]  the button that should be skinned.
