@@ -6,7 +6,7 @@ pfUI:RegisterSkin("Character", function ()
   StripTextures(CharacterFrame)
 
   CharacterFramePortrait:Hide()
-  SkinCloseButton(CharacterFrameCloseButton, CharacterFrame)
+  SkinCloseButton(CharacterFrameCloseButton, CharacterFrame, -37, -17)
 
   CharacterNameFrame:SetPoint("TOP", -10, -20)
 

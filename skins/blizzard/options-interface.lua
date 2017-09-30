@@ -14,6 +14,9 @@ pfUI:RegisterSkin("Options-Interface", function ()
     UIOptionsFrame:SetHeight(BasicOptions:GetHeight())
     UIOptionsFrame:SetScale(.8)
 
+    local closeButton = GetCloseButton(UIOptionsFrame)
+    if closeButton then SkinCloseButton(closeButton, UIOptionsFrame, -4, -4) end
+
     StripTextures(UIOptionsFrame)
     CreateBackdrop(UIOptionsFrame, nil, nil, .9)
 
