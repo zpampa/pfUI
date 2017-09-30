@@ -641,6 +641,24 @@ function pfUI.api.SkinButton(button, cr, cg, cb)
   b:SetFont(pfUI.font_default, pfUI_config.global.font_size, "OUTLINE")
 end
 
+function pfUI.api.SkinCloseButton(button, parentFrame)
+  SkinButton(button)
+
+  button:SetWidth(15)
+  button:SetHeight(15)
+
+  if parentFrame then
+    button:ClearAllPoints()
+    button:SetPoint("TOPRIGHT", parentFrame, "TOPRIGHT", -37, -17)
+  end
+
+  button.texture = button:CreateTexture("pfQuestionDialogCloseTex")
+  button.texture:SetTexture("Interface\\AddOns\\pfUI\\img\\close")
+  button.texture:ClearAllPoints()
+  button.texture:SetAllPoints(button)
+  button.texture:SetVertexColor(1,.25,.25,1)
+end
+
 -- [ Question Dialog ]
 -- Creates a pfUI user dialog popup:
 -- 'text'       [string]        text that will be displayed.
