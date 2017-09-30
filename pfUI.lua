@@ -93,8 +93,10 @@ pfUI:SetScript("OnEvent", function()
 
     -- load skins
     for i,s in pairs(this.skins) do
-      setfenv(pfUI.skin[s], pfUI:GetEnvironment())
-      pfUI.skin[s]()
+      if not ( pfUI_config["disabled"] and pfUI_config["disabled"]["skin_" .. s]  == "1" ) then
+        setfenv(pfUI.skin[s], pfUI:GetEnvironment())
+        pfUI.skin[s]()
+      end
     end
   end
 end)
