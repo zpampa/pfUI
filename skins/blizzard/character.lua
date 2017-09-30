@@ -1,6 +1,6 @@
 pfUI:RegisterSkin("Character", function ()
   local CharacterFrame = _G["PaperDollFrame"]
-  CreateBackdrop(CharacterFrame, nil, nil, alpha)
+  CreateBackdrop(CharacterFrame, nil, nil, .9)
   CharacterFrame.backdrop:SetPoint('TOPLEFT', 10, -12)
   CharacterFrame.backdrop:SetPoint('BOTTOMRIGHT', -32, 76)
   StripTextures(CharacterFrame)

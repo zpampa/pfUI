@@ -10,25 +10,14 @@ pfUI:RegisterSkin("Options-Interface", function ()
     -- customize
     UIOptionsBlackground:Hide()
 
-    UIOptionsFrame:SetMovable(true)
-    UIOptionsFrame:EnableMouse(true)
-
-    UIOptionsFrame:ClearAllPoints()
-    UIOptionsFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     UIOptionsFrame:SetWidth(BasicOptions:GetWidth())
     UIOptionsFrame:SetHeight(BasicOptions:GetHeight())
     UIOptionsFrame:SetScale(.8)
 
     StripTextures(UIOptionsFrame)
+    CreateBackdrop(UIOptionsFrame, nil, nil, .9)
 
-    CreateBackdrop(UIOptionsFrame, nil, false, .9)
-
-    UIOptionsFrame:SetScript("OnMouseDown",function()
-      UIOptionsFrame:StartMoving()
-    end)
-
-    UIOptionsFrame:SetScript("OnMouseUp",function()
-      UIOptionsFrame:StopMovingOrSizing()
-    end)
+    CenterFrame(UIOptionsFrame)
+    EnableMovable(UIOptionsFrame)
   end)
 end)

@@ -6,23 +6,12 @@ pfUI:RegisterSkin("Options-Video", function ()
     Disable_BagButtons()
 
     -- customize
-    OptionsFrame:SetMovable(true)
-    OptionsFrame:EnableMouse(true)
-
-    OptionsFrame:ClearAllPoints()
-    OptionsFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     OptionsFrame:SetScale(.95)
 
     StripTextures(OptionsFrame)
+    CreateBackdrop(OptionsFrame, nil, nil, .9)
 
-    CreateBackdrop(OptionsFrame, nil, false, .9)
-
-    OptionsFrame:SetScript("OnMouseDown",function()
-      OptionsFrame:StartMoving()
-    end)
-
-    OptionsFrame:SetScript("OnMouseUp",function()
-      OptionsFrame:StopMovingOrSizing()
-    end)
+    CenterFrame(OptionsFrame)
+    EnableMovable(OptionsFrame)
   end)
 end)

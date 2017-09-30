@@ -6,23 +6,12 @@ pfUI:RegisterSkin("Options-Sound", function ()
     UpdateMicroButtons()
 
     -- customize
-    SoundOptionsFrame:SetMovable(true)
-    SoundOptionsFrame:EnableMouse(true)
     SoundOptionsFrame:EnableKeyboard(false)
 
-    SoundOptionsFrame:ClearAllPoints()
-    SoundOptionsFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-
     StripTextures(SoundOptionsFrame)
+    CreateBackdrop(SoundOptionsFrame, nil, nil, .9)
 
-    CreateBackdrop(SoundOptionsFrame, nil, false, .9)
-
-    SoundOptionsFrame:SetScript("OnMouseDown",function()
-      SoundOptionsFrame:StartMoving()
-    end)
-
-    SoundOptionsFrame:SetScript("OnMouseUp",function()
-      SoundOptionsFrame:StopMovingOrSizing()
-    end)
+    CenterFrame(SoundOptionsFrame)
+    EnableMovable(SoundOptionsFrame)
   end)
 end)

@@ -328,7 +328,7 @@ end
 
 -- [ Enable Movable ]
 -- Set all necessary functions to make a already existing frame movable.
--- 'name'       [string]        Name of the Frame that should be movable
+-- 'name'       [frame/string]  Name of the Frame that should be movable
 -- 'addon'      [string]        Addon that must be loaded before being able to access the frame
 -- 'blacklist'  [table]         A list of frames that should be deactivated for mouse usage
 function pfUI.api.EnableMovable(name, addon, blacklist)
