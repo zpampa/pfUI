@@ -364,7 +364,8 @@ function pfUI.api.EnableMovable(name, addon, blacklist)
       end
     end
 
-    local frame = _G[name]
+    local frame = name
+    if type(name) == "string" then frame = _G[name] end
     frame:SetMovable(true)
     frame:EnableMouse(true)
     frame:SetScript("OnMouseDown",function()
