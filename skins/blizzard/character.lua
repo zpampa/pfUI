@@ -3,28 +3,15 @@ pfUI:RegisterSkin("Character", function ()
   CreateBackdrop(CharacterFrame, nil, nil, alpha)
   CharacterFrame.backdrop:SetPoint('TOPLEFT', 10, -12)
   CharacterFrame.backdrop:SetPoint('BOTTOMRIGHT', -32, 76)
-  for k,v in pairs({CharacterFrame:GetRegions()}) do
-    if v:GetObjectType() == "Texture" then
-      v:SetTexture(nil)
-    end
-  end
+  StripTextures(CharacterFrame)
 
   CharacterFramePortrait:Hide()
   SkinCloseButton(CharacterFrameCloseButton, CharacterFrame)
 
   CharacterNameFrame:SetPoint("TOP", -10, -20)
 
-  for k,v in pairs({CharacterAttributesFrame:GetRegions()}) do
-    if v:GetObjectType() == "Texture" then
-      v:SetTexture(nil)
-    end
-  end
-
-  for k,v in pairs({CharacterResistanceFrame:GetRegions()}) do
-    if v:GetObjectType() == "Texture" then
-      v:SetTexture(nil)
-    end
-  end
+  StripTextures(CharacterAttributesFrame)
+  StripTextures(CharacterResistanceFrame)
 
   CreateBackdrop(CharacterResistanceFrame)
   CharacterResistanceFrame.backdrop:SetPoint('TOPLEFT', 3, 2)

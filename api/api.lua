@@ -641,6 +641,10 @@ function pfUI.api.SkinButton(button, cr, cg, cb)
   b:SetFont(pfUI.font_default, pfUI_config.global.font_size, "OUTLINE")
 end
 
+-- [ Skin Close Button ]
+-- Applies pfUI close skin to buttons and can also be positioned
+-- 'button'      [frame]  the button that should be skinned.
+-- 'parentFrame' [frame]  will anchor to the top right of the parent.
 function pfUI.api.SkinCloseButton(button, parentFrame)
   SkinButton(button)
 
@@ -657,6 +661,15 @@ function pfUI.api.SkinCloseButton(button, parentFrame)
   button.texture:ClearAllPoints()
   button.texture:SetAllPoints(button)
   button.texture:SetVertexColor(1,.25,.25,1)
+end
+
+-- [ StripTextures ]
+-- Strips all textures off a frame.
+-- 'frame'     [frame]  the frame that should be stripped.
+function pfUI.api.StripTextures(frame)
+  for i,v in ipairs({frame:GetRegions()}) do
+    if v.SetTexture then v:SetTexture("") end
+  end
 end
 
 -- [ Question Dialog ]

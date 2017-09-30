@@ -13,9 +13,7 @@ pfUI:RegisterSkin("Options-Video", function ()
     OptionsFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
     OptionsFrame:SetScale(.95)
 
-    for i,v in ipairs({OptionsFrame:GetRegions()}) do
-      if v.SetTexture then v:SetTexture("") end
-    end
+    StripTextures(OptionsFrame)
 
     CreateBackdrop(OptionsFrame, nil, false, .9)
 

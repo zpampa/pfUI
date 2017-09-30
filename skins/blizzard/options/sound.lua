@@ -13,9 +13,7 @@ pfUI:RegisterSkin("Options-Sound", function ()
     SoundOptionsFrame:ClearAllPoints()
     SoundOptionsFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 
-    for i,v in ipairs({SoundOptionsFrame:GetRegions()}) do
-      if v.SetTexture then v:SetTexture("") end
-    end
+    StripTextures(SoundOptionsFrame)
 
     CreateBackdrop(SoundOptionsFrame, nil, false, .9)
 

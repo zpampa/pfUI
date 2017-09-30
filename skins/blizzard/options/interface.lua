@@ -19,9 +19,7 @@ pfUI:RegisterSkin("Options-Interface", function ()
     UIOptionsFrame:SetHeight(BasicOptions:GetHeight())
     UIOptionsFrame:SetScale(.8)
 
-    for i,v in ipairs({UIOptionsFrame:GetRegions()}) do
-      if v.SetTexture then v:SetTexture("") end
-    end
+    StripTextures(UIOptionsFrame)
 
     CreateBackdrop(UIOptionsFrame, nil, false, .9)
 
