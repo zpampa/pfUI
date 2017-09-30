@@ -1,4 +1,4 @@
-pfUI:RegisterSkin("characterframe", function ()
+pfUI:RegisterSkin("Character", function ()
   local CharacterFrame = _G["PaperDollFrame"]
   CreateBackdrop(CharacterFrame, nil, nil, alpha)
   CharacterFrame.backdrop:SetPoint('TOPLEFT', 10, -12)
