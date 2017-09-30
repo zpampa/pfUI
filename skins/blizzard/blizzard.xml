@@ -1,4 +1,0 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/">
-	<Include file="options\options.xml"/>
-	<Script file="character.lua"/>
-</Ui>
