@@ -1,5 +1,5 @@
 pfUI:RegisterSkin("Options-Sound", function ()
-    SoundOptionsFrame:SetScript("OnShow", function()
+  SoundOptionsFrame:SetScript("OnShow", function()
     -- default events
     SoundOptionsFrame_Load()
     Disable_BagButtons()

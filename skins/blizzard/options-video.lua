@@ -1,5 +1,5 @@
 pfUI:RegisterSkin("Options-Video", function ()
-    OptionsFrame:SetScript("OnShow", function()
+  OptionsFrame:SetScript("OnShow", function()
     -- default events
     OptionsFrame_Load()
     UpdateMicroButtons()

@@ -1,5 +1,5 @@
 pfUI:RegisterSkin("Options-Interface", function ()
-    UIOptionsFrame:SetScript("OnShow", function()
+  UIOptionsFrame:SetScript("OnShow", function()
     -- default events
     UIOptionsFrame_Load()
     MultiActionBar_Update()
