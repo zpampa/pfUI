@@ -349,6 +349,15 @@ function pfUI.api.StripTextures(frame)
   end
 end
 
+function pfUI.api.SkinBackdropOffset(frame, offset)
+  StripTextures(frame)
+  CreateBackdrop(frame, nil, nil, .0)
+  local offsetBorder = -3
+  if offset then offsetBorder = offset end 
+  frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", -offsetBorder, offsetBorder)
+  frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", offsetBorder, -offsetBorder)
+end
+
 -- [ GetCloseButton ]
 -- Get the close button from a frame.
 -- 'frame'     [frame]  the frame that should be searched for the button.

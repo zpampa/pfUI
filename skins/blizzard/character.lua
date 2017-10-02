@@ -13,6 +13,21 @@ pfUI:RegisterSkin("Character", function ()
   StripTextures(CharacterAttributesFrame)
   StripTextures(CharacterResistanceFrame)
 
+  local attributesLeft = CreateFrame("Frame", "CharacterAttributesLeft", CharacterAttributesFrame)
+  attributesLeft:SetPoint("TOPLEFT", CharacterAttributesFrame, "TOPLEFT", -3, 3)
+  attributesLeft:SetPoint("BOTTOMRIGHT", CharacterAttributesFrame, "BOTTOMRIGHT", -113, -11)
+  SkinBackdropOffset(attributesLeft)
+
+  local attributesTopRight = CreateFrame("Frame", "CharacterAttributesTopRight", CharacterAttributesFrame)
+  attributesTopRight:SetPoint("TOPLEFT", CharacterAttributesFrame, "TOPLEFT", 116, 3)
+  attributesTopRight:SetPoint("BOTTOMRIGHT", CharacterAttributesFrame, "BOTTOMRIGHT", 3, 33)
+  SkinBackdropOffset(attributesTopRight)
+
+  local attributesBottomRight = CreateFrame("Frame", "CharacterAttributesBottomRight", CharacterAttributesFrame)
+  attributesBottomRight:SetPoint("TOPLEFT", CharacterAttributesFrame, "TOPLEFT", 116, -41)
+  attributesBottomRight:SetPoint("BOTTOMRIGHT", CharacterAttributesFrame, "BOTTOMRIGHT", 3, -11)
+  SkinBackdropOffset(attributesBottomRight)
+
   CreateBackdrop(CharacterResistanceFrame)
   CharacterResistanceFrame.backdrop:SetPoint("TOPLEFT", 3, 2)
   CharacterResistanceFrame.backdrop:SetPoint("BOTTOMRIGHT", -3, 48)
