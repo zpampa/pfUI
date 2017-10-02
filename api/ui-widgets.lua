@@ -358,6 +358,18 @@ function pfUI.api.SkinBackdropOffset(frame, offset)
   frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", offsetBorder, -offsetBorder)
 end
 
+function pfUI.api.SkinCheckbox(frame, offset)
+  frame:SetNormalTexture("")
+  frame:SetPushedTexture("")
+  frame:SetHighlightTexture("")
+  CreateBackdrop(frame, nil, nil)
+  local offsetBorder = -5
+  if offset then offsetBorder = offset end 
+  frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", -offsetBorder, offsetBorder)
+  frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", offsetBorder, -offsetBorder)
+  frame:SetHitRectInsets(-offsetBorder,-offsetBorder,-offsetBorder,-offsetBorder)
+end
+
 -- [ GetCloseButton ]
 -- Get the close button from a frame.
 -- 'frame'     [frame]  the frame that should be searched for the button.

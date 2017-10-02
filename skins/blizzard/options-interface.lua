@@ -1,6 +1,7 @@
 pfUI:RegisterSkin("Options-Interface", function ()
   UIOptionsFrame:SetScript("OnShow", function()
     -- default events
+    SetupFullscreenScale(this)
     UIOptionsFrame_Load()
     MultiActionBar_Update()
     MultiActionBar_ShowAllGrids()
@@ -46,6 +47,11 @@ pfUI:RegisterSkin("Options-Interface", function ()
 
     for i,f in ipairs(backdrops) do
       SkinBackdropOffset(f)
+    end
+
+    for i=1, 69 do
+      local frame = _G["UIOptionsFrameCheckButton"..i]
+      if frame then SkinCheckbox(frame) end
     end
   end)
 end)

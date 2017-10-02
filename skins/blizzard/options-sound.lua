@@ -22,5 +22,10 @@ pfUI:RegisterSkin("Options-Sound", function ()
 
     SkinButton(SoundOptionsFrameCancel)
     SoundOptionsFrameCancel:SetTextColor(1,0.82,0,1)
+
+    for i=1, 8 do
+      local frame = _G["SoundOptionsFrameCheckButton"..i]
+      if frame then SkinCheckbox(frame) end
+    end
   end)
 end)

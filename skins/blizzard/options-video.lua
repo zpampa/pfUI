@@ -37,5 +37,10 @@ pfUI:RegisterSkin("Options-Video", function ()
     OptionsFrameBrightness.grayScale:SetWidth(256)
     OptionsFrameBrightness.grayScale:SetHeight(32)
     OptionsFrameBrightness.grayScale:SetPoint("RIGHT", -10, 0)
+
+    for i=1, 18 do
+      local frame = _G["OptionsFrameCheckButton"..i]
+      if frame then SkinCheckbox(frame) end
+    end
   end)
 end)
