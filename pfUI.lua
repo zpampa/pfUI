@@ -117,6 +117,12 @@ pfUI.backdrop = {
   insets = {left = -1, right = -1, top = -1, bottom = -1},
 }
 
+pfUI.backdrop_no_top = {
+  bgFile = "Interface\\AddOns\\pfUI\\img\\col", tile = true, tileSize = 8,
+  edgeFile = "Interface\\AddOns\\pfUI\\img\\border_no_top", edgeSize = 8,
+  insets = {left = -1, right = -1, top = -1, bottom = -1},
+}
+
 pfUI.backdrop_small = {
   bgFile = "Interface\\AddOns\\pfUI\\img\\col", tile = true, tileSize = 8,
   insets = {left = -1, right = -1, top = -1, bottom = -1},

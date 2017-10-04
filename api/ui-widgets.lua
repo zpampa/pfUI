@@ -362,7 +362,7 @@ function pfUI.api.SkinCheckbox(frame, offset)
   frame:SetNormalTexture("")
   frame:SetPushedTexture("")
   frame:SetHighlightTexture("")
-  CreateBackdrop(frame)
+  CreateBackdrop(frame, nil, nil, .0)
   local offsetBorder = -5
   if offset then offsetBorder = offset end 
   frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", -offsetBorder, offsetBorder)
@@ -372,7 +372,7 @@ end
 
 function pfUI.api.SkinDropDown(frame, offsetX, offsetY)
   StripTextures(frame)
-  CreateBackdrop(frame)
+  CreateBackdrop(frame, nil, nil, .0)
   local offsetXBorder = -16
   if offsetX then offsetXBorder = offsetX end 
   local offsetYBorder = -4
@@ -405,6 +405,11 @@ function pfUI.api.SkinDropDown(frame, offsetX, offsetY)
   arrowDisabled:SetAllPoints(button)
   arrowDisabled:SetVertexColor(0.2, 0.2, 0.2)
   button:SetDisabledTexture(arrowDisabled)
+end
+
+function pfUI.api.SkinTabBottom(frame)
+  StripTextures(frame)
+  CreateBackdrop(frame, nil, nil, 0.8, pfUI.backdrop_no_top)
 end
 
 -- [ GetCloseButton ]

@@ -526,7 +526,7 @@ end
 -- 'inset'      [int]           backdrop inset, defaults to border size.
 -- 'legacy'     [bool]          use legacy backdrop instead of creating frames.
 -- 'transp'     [bool]          force default transparency of 0.8.
-function pfUI.api.CreateBackdrop(f, inset, legacy, transp)
+function pfUI.api.CreateBackdrop(f, inset, legacy, transp, backdropSetting)
   -- exit if now frame was given
   if not f then return end
 
@@ -550,7 +550,9 @@ function pfUI.api.CreateBackdrop(f, inset, legacy, transp)
 
   -- use legacy backdrop handling
   if legacy then
-    f:SetBackdrop(pfUI.backdrop)
+    local backdrop = pfUI.backdrop
+    if backdropSetting then backdrop = backdropSetting end
+    f:SetBackdrop(backdrop)
     f:SetBackdropColor(br, bg, bb, ba)
     f:SetBackdropBorderColor(er, eg, eb , ea)
     return
@@ -568,6 +570,7 @@ function pfUI.api.CreateBackdrop(f, inset, legacy, transp)
     local border = tonumber(border) - 1
     local backdrop = pfUI.backdrop
     if border < 1 then backdrop = pfUI.backdrop_small end
+    if backdropSetting then backdrop = backdropSetting end
   	local b = CreateFrame("Frame", nil, f)
   	b:SetPoint("TOPLEFT", f, "TOPLEFT", -border, border)
   	b:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", border, -border)

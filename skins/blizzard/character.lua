@@ -48,4 +48,19 @@ pfUI:RegisterSkin("Character", function ()
       if f:GetObjectType() == "Texture" then f:SetTexCoord(c[1], c[2], c[3], c[4]) end
     end
   end
+
+  for i=1, 5 do
+    local tab = _G["CharacterFrameTab"..i]
+    tab:SetHeight(22)
+    tab:SetScript("OnShow", function()
+      PanelTemplates_TabResize(0);
+      tab:SetWidth(tab:GetTextWidth() + 20);
+    end)
+    SkinTabBottom(tab)
+    if i ~= 1 then
+      local lastTab = _G["CharacterFrameTab"..(i-1)]
+      tab:ClearAllPoints()
+      tab:SetPoint("LEFT", lastTab, "RIGHT", 8, 0)
+    end
+  end
 end)
