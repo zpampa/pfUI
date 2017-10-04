@@ -362,12 +362,49 @@ function pfUI.api.SkinCheckbox(frame, offset)
   frame:SetNormalTexture("")
   frame:SetPushedTexture("")
   frame:SetHighlightTexture("")
-  CreateBackdrop(frame, nil, nil)
+  CreateBackdrop(frame)
   local offsetBorder = -5
   if offset then offsetBorder = offset end 
   frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", -offsetBorder, offsetBorder)
   frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", offsetBorder, -offsetBorder)
   frame:SetHitRectInsets(-offsetBorder,-offsetBorder,-offsetBorder,-offsetBorder)
+end
+
+function pfUI.api.SkinDropDown(frame, offsetX, offsetY)
+  StripTextures(frame)
+  CreateBackdrop(frame)
+  local offsetXBorder = -16
+  if offsetX then offsetXBorder = offsetX end 
+  local offsetYBorder = -4
+  if offsetY then offsetYBorder = offsetY end 
+  frame.backdrop:SetPoint("TOPLEFT", frame, "TOPLEFT", -offsetXBorder, offsetYBorder)
+  frame.backdrop:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", offsetXBorder, -offsetYBorder)
+  frame:SetHitRectInsets(-offsetXBorder, -offsetXBorder, -offsetYBorder, -offsetYBorder)
+  local text = _G[frame:GetName().."Text"]
+  text:SetPoint("TOPLEFT", frame.backdrop, "TOPLEFT")
+  text:SetPoint("BOTTOMRIGHT", frame.backdrop, "BOTTOMRIGHT")
+  local button = _G[frame:GetName().."Button"]
+  button:ClearAllPoints()
+  button:SetPoint("RIGHT", frame.backdrop, "RIGHT", -4, 0)
+  button:SetHeight(16)
+  button:SetWidth(16)
+  local arrow = button:CreateTexture()
+  arrow:SetTexture("Interface\\AddOns\\pfUI\\img\\down")
+  arrow:SetAllPoints(button)
+  button:SetNormalTexture(arrow)
+  local arrowHighlighted = button:CreateTexture()
+  arrowHighlighted:SetTexture("Interface\\AddOns\\pfUI\\img\\down")
+  arrowHighlighted:SetAllPoints(button)
+  button:SetHighlightTexture(arrowHighlighted)
+  local arrowPushed = button:CreateTexture()
+  arrowPushed:SetTexture("Interface\\AddOns\\pfUI\\img\\down")
+  arrowPushed:SetAllPoints(button)
+  button:SetPushedTexture(arrowPushed)
+  local arrowDisabled = button:CreateTexture()
+  arrowDisabled:SetTexture("Interface\\AddOns\\pfUI\\img\\down")
+  arrowDisabled:SetAllPoints(button)
+  arrowDisabled:SetVertexColor(0.2, 0.2, 0.2)
+  button:SetDisabledTexture(arrowDisabled)
 end
 
 -- [ GetCloseButton ]

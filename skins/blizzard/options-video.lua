@@ -20,6 +20,16 @@ pfUI:RegisterSkin("Options-Video", function ()
 
     SkinButton(OptionsFrameCancel)
 
+    local dropdowns = {
+      OptionsFrameResolutionDropDown,
+      OptionsFrameRefreshDropDown,
+      OptionsFrameMultiSampleDropDown,
+    }
+
+    for i,f in ipairs(dropdowns) do
+      SkinDropDown(f)
+    end
+
     local backdrops = {
       OptionsFrameDisplay,
       OptionsFrameWorldAppearance,

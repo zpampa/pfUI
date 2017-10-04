@@ -34,6 +34,17 @@ pfUI:RegisterSkin("Options-Interface", function ()
     SkinButton(UIOptionsFrameCancel)
     UIOptionsFrameCancel:SetTextColor(1,0.82,0,1)
 
+    local dropdowns = {
+      UIOptionsFrameClickCameraDropDown,
+      UIOptionsFrameCameraDropDown,
+      UIOptionsFrameTargetofTargetDropDown,
+      UIOptionsFrameCombatTextDropDown,
+    }
+
+    for i,f in ipairs(dropdowns) do
+      SkinDropDown(f)
+    end
+
     local backdrops = {
       BasicOptionsGeneral,
       BasicOptionsDisplay,
