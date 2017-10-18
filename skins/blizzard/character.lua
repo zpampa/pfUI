@@ -99,6 +99,12 @@ pfUI:RegisterSkin("Character", function ()
     StripTextures(slot)
     CreateBackdrop(slot)
 
+    if not slot.scoreText then
+      slot.scoreText = slot:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+      slot.scoreText:SetFont(pfUI.font_default, 12, "OUTLINE")
+      slot.scoreText:SetPoint("BOTTOMRIGHT", 0, 0)
+    end
+
     if i ~= 1 and i ~= 9 and i ~= 17 then
       local isBottomSlots = i > 17
       local lastSlot = slots[i-1]
@@ -125,6 +131,26 @@ pfUI:RegisterSkin("Character", function ()
         else
           local er, eg, eb, ea = pfUI.cache.er, pfUI.cache.eg, pfUI.cache.eb, pfUI.cache.ea
           slot.backdrop:SetBackdropBorderColor(er, eg, rb, ea)
+        end
+
+        if ShaguScore and GetInventoryItemLink("player", slotId) and slot.scoreText then
+          local _, _, itemID = string.find(GetInventoryItemLink("player", slotId), "item:(%d+):%d+:%d+:%d+")
+          local itemLevel = ShaguScore.Database[tonumber(itemID)] or 0
+          local _, _, itemRarity, _, _, _, _, itemSlot, _ = GetItemInfo(itemID)
+          local r,g,b = GetItemQualityColor(itemRarity)
+          local score = ShaguScore:Calculate(itemSlot, itemRarity, itemLevel)
+          if score and score > 0  then
+            if quality and quality > 0 then
+              slot.scoreText:SetText(score)
+              slot.scoreText:SetTextColor(r, g, b, 1)
+            else
+              slot.scoreText:SetText("")
+            end
+          else
+            if slot.scoreText then slot.scoreText:SetText("") end
+          end
+        else
+          if slot.scoreText then slot.scoreText:SetText("") end
         end
       end
     end
