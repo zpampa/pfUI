@@ -66,73 +66,67 @@ pfUI:RegisterSkin("Character", function ()
 
   local slotTextCords = {.08, .92, .08, .92};
 
-  local leftSlots = {
-    "CharacterHeadSlot",
-    "CharacterNeckSlot",
-    "CharacterShoulderSlot",
-    "CharacterBackSlot",
-    "CharacterChestSlot",
-    "CharacterShirtSlot",
-    "CharacterTabardSlot",
-    "CharacterWristSlot"
+  local slots = {
+    "HeadSlot",
+    "NeckSlot",
+    "ShoulderSlot",
+    "BackSlot",
+    "ChestSlot",
+    "ShirtSlot",
+    "TabardSlot",
+    "WristSlot",
+
+    "HandsSlot",
+    "WaistSlot",
+    "LegsSlot",
+    "FeetSlot",
+    "Finger0Slot",
+    "Finger1Slot",
+    "Trinket0Slot",
+    "Trinket1Slot",
+
+    "MainHandSlot",
+    "SecondaryHandSlot",
+    "RangedSlot"
   }
 
-  for i, slot in pairs(leftSlots) do
-    _G[slot.."IconTexture"]:SetTexCoord(unpack(slotTextCords))
+  for i, slot in pairs(slots) do
+    local slotId, _, _ = GetInventorySlotInfo(slot)
+    local quality = GetInventoryItemQuality("player", slotId)
 
-    slot = _G[slot]
+    _G["Character"..slot.."IconTexture"]:SetTexCoord(unpack(slotTextCords))
+    slot = _G["Character"..slot]
     StripTextures(slot)
     CreateBackdrop(slot)
 
-    if i ~= 1 then
-      local lastSlot = _G[leftSlots[i-1]]
+    if i ~= 1 and i ~= 9 and i ~= 17 then
+      local isBottomSlots = i > 17
+      local lastSlot = slots[i-1]
+      lastSlot = _G["Character"..lastSlot]
       slot:ClearAllPoints()
-      slot:SetPoint("TOP", lastSlot, "BOTTOM", 0, -7)
+
+      if isBottomSlots then
+        slot:SetPoint("LEFT", lastSlot, "RIGHT", 7, 0)
+      else
+        slot:SetPoint("TOP", lastSlot, "BOTTOM", 0, -7)
+      end
     end
   end
 
-  local rightSlots = {
-    "CharacterHandsSlot",
-    "CharacterWaistSlot",
-    "CharacterLegsSlot",
-    "CharacterFeetSlot",
-    "CharacterFinger0Slot",
-    "CharacterFinger1Slot",
-    "CharacterTrinket0Slot",
-    "CharacterTrinket1Slot",
-  }
+  hooksecurefunc("PaperDollItemSlotButton_Update", function()
+    for i, slot in pairs(slots) do
+      local slotId, _, _ = GetInventorySlotInfo(slot)
+      local quality = GetInventoryItemQuality("player", slotId)
+      slot = _G["Character"..slot]
 
-  for i, slot in pairs(rightSlots) do
-    _G[slot.."IconTexture"]:SetTexCoord(unpack(slotTextCords))
-
-    slot = _G[slot]
-    StripTextures(slot)
-    CreateBackdrop(slot)
-
-    if i ~= 1 then
-      local lastSlot = _G[rightSlots[i-1]]
-      slot:ClearAllPoints()
-      slot:SetPoint("TOP", lastSlot, "BOTTOM", 0, -7)
+      if slot and slot.backdrop then
+        if quality and quality > 0 then
+          slot.backdrop:SetBackdropBorderColor(GetItemQualityColor(quality))
+        else
+          local er, eg, eb, ea = pfUI.cache.er, pfUI.cache.eg, pfUI.cache.eb, pfUI.cache.ea
+          slot.backdrop:SetBackdropBorderColor(er, eg, rb, ea)
+        end
+      end
     end
-  end
-
-  local bottomSlots = {
-    "CharacterMainHandSlot",
-    "CharacterSecondaryHandSlot",
-    "CharacterRangedSlot",
-  }
-
-  for i, slot in pairs(bottomSlots) do
-    _G[slot.."IconTexture"]:SetTexCoord(unpack(slotTextCords))
-
-    slot = _G[slot]
-    StripTextures(slot)
-    CreateBackdrop(slot)
-
-    if i ~= 1 then
-      local lastSlot = _G[bottomSlots[i-1]]
-      slot:ClearAllPoints()
-      slot:SetPoint("LEFT", lastSlot, "RIGHT", 7, 0)
-    end
-  end
+  end)
 end)
