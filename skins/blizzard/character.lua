@@ -10,6 +10,22 @@ pfUI:RegisterSkin("Character", function ()
 
   CharacterNameFrame:SetPoint("TOP", -10, -20)
 
+  for i=1, 5 do
+    local tab = _G["CharacterFrameTab"..i]
+    tab:SetHeight(22)
+    tab:SetScript("OnShow", function()
+      PanelTemplates_TabResize(0);
+      tab:SetWidth(tab:GetTextWidth() + 20);
+    end)
+    SkinTabBottom(tab)
+    if i ~= 1 then
+      local lastTab = _G["CharacterFrameTab"..(i-1)]
+      tab:ClearAllPoints()
+      tab:SetPoint("LEFT", lastTab, "RIGHT", 8, 0)
+    end
+  end
+
+  -- Character tab
   StripTextures(CharacterAttributesFrame)
   StripTextures(CharacterResistanceFrame)
 
@@ -40,7 +56,7 @@ pfUI:RegisterSkin("Character", function ()
     {0.21875, 0.78125, 0.4765625, 0.546875}
   }
 
-  for i,c in ipairs(magicResTextureCords) do
+  for i,c in pairs(magicResTextureCords) do
     local magicResFrame = _G["MagicResFrame"..i]
     magicResFrame:SetWidth(22)
     magicResFrame:SetHeight(22)
@@ -48,23 +64,6 @@ pfUI:RegisterSkin("Character", function ()
       if f:GetObjectType() == "Texture" then f:SetTexCoord(c[1], c[2], c[3], c[4]) end
     end
   end
-
-  for i=1, 5 do
-    local tab = _G["CharacterFrameTab"..i]
-    tab:SetHeight(22)
-    tab:SetScript("OnShow", function()
-      PanelTemplates_TabResize(0);
-      tab:SetWidth(tab:GetTextWidth() + 20);
-    end)
-    SkinTabBottom(tab)
-    if i ~= 1 then
-      local lastTab = _G["CharacterFrameTab"..(i-1)]
-      tab:ClearAllPoints()
-      tab:SetPoint("LEFT", lastTab, "RIGHT", 8, 0)
-    end
-  end
-
-  local slotTextCords = {.08, .92, .08, .92};
 
   local slots = {
     "HeadSlot",
@@ -75,7 +74,6 @@ pfUI:RegisterSkin("Character", function ()
     "ShirtSlot",
     "TabardSlot",
     "WristSlot",
-
     "HandsSlot",
     "WaistSlot",
     "LegsSlot",
@@ -84,7 +82,6 @@ pfUI:RegisterSkin("Character", function ()
     "Finger1Slot",
     "Trinket0Slot",
     "Trinket1Slot",
-
     "MainHandSlot",
     "SecondaryHandSlot",
     "RangedSlot"
@@ -94,7 +91,7 @@ pfUI:RegisterSkin("Character", function ()
     local slotId, _, _ = GetInventorySlotInfo(slot)
     local quality = GetInventoryItemQuality("player", slotId)
 
-    _G["Character"..slot.."IconTexture"]:SetTexCoord(unpack(slotTextCords))
+    _G["Character"..slot.."IconTexture"]:SetTexCoord(.08, .92, .08, .92)
     slot = _G["Character"..slot]
     StripTextures(slot)
     CreateBackdrop(slot)
@@ -112,7 +109,7 @@ pfUI:RegisterSkin("Character", function ()
       slot:ClearAllPoints()
 
       if isBottomSlots then
-        slot:SetPoint("LEFT", lastSlot, "RIGHT", 7, 0)
+        slot:SetPoint("LEFT", lastSlot, "RIGHT", 8, 0)
       else
         slot:SetPoint("TOP", lastSlot, "BOTTOM", 0, -7)
       end
@@ -129,8 +126,7 @@ pfUI:RegisterSkin("Character", function ()
         if quality and quality > 0 then
           slot.backdrop:SetBackdropBorderColor(GetItemQualityColor(quality))
         else
-          local er, eg, eb, ea = pfUI.cache.er, pfUI.cache.eg, pfUI.cache.eb, pfUI.cache.ea
-          slot.backdrop:SetBackdropBorderColor(er, eg, rb, ea)
+          slot.backdrop:SetBackdropBorderColor(pfUI.cache.er, pfUI.cache.eg, pfUI.cache.eb, pfUI.cache.ea)
         end
 
         if ShaguScore and GetInventoryItemLink("player", slotId) and slot.scoreText then
@@ -155,4 +151,45 @@ pfUI:RegisterSkin("Character", function ()
       end
     end
   end)
+
+  -- Reputation tab
+  CreateBackdrop(ReputationFrame, nil, nil, .9)
+  ReputationFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
+  ReputationFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
+  StripTextures(ReputationFrame)
+
+  ReputationDetailFrame:ClearAllPoints()
+  ReputationDetailFrame:SetPoint("TOPLEFT", ReputationFrame, "TOPRIGHT", -26, -28)
+  CreateBackdrop(ReputationDetailFrame, nil, nil, .9)
+  StripTextures(ReputationDetailFrame)
+  SkinCloseButton(ReputationDetailCloseButton, ReputationDetailFrame, -3, -3)
+
+  -- Skill tab
+  CreateBackdrop(SkillFrame, nil, nil, .9)
+  SkillFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
+  SkillFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
+  StripTextures(SkillFrame)
+
+  SkillFrameCancelButton:Hide()
+
+  -- Honor tab
+  CreateBackdrop(HonorFrame, nil, nil, .9)
+  HonorFrame.backdrop:SetPoint("TOPLEFT", 10, -12)
+  HonorFrame.backdrop:SetPoint("BOTTOMRIGHT", -32, 76)
+  StripTextures(HonorFrame)
+
+  local frameBackdropCords = {
+    {18, -93, -18, 276},
+    {18, -147, -18, 223},
+    {18, -201, -18, 168},
+    {18, -255, -18, 100},
+    {18, -330, -18, 19}
+  }
+
+  for i,c in pairs(frameBackdropCords) do
+    local honorBackdrop = CreateFrame("Frame", nil, HonorFrame)
+    honorBackdrop:SetPoint("TOPLEFT", HonorFrame.backdrop, "TOPLEFT", c[1], c[2])
+    honorBackdrop:SetPoint("BOTTOMRIGHT", HonorFrame.backdrop, "BOTTOMRIGHT", c[3], c[4])
+    SkinBackdropOffset(honorBackdrop)
+  end
 end)
